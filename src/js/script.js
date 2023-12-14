@@ -62,7 +62,7 @@ dirLight.shadow.camera.far = 3500;
 dirLight.shadow.bias = - 0.0001;
 
 // Plane
-const soloTexture = new THREE.TextureLoader().load('../../assets/solo.jpg'); // sugestão: colocar solo de deserto
+const soloTexture = new THREE.TextureLoader().load('/Dino-Game/assets/solo.jpg'); // sugestão: colocar solo de deserto
 const planeGeometry = new THREE.PlaneGeometry(10000, 10000);
 const planeMaterial = new THREE.MeshLambertMaterial({ map: soloTexture });
 
@@ -116,7 +116,7 @@ let mixer;
 
 function loadPlayer() {
     const loader = new GLTFLoader();
-    loader.load('../../assets/tyranno/scene.gltf', function (gltf) {
+    loader.load('/Dino-Game/assets/tyranno/scene.gltf', function (gltf) {
         dino = gltf.scene;
         dino.scale.set(10, 10, 10);
         dino.position.x = -20;
@@ -143,7 +143,7 @@ const cloudLoader = new GLTFLoader();
 const numClouds = 20; // número de nuvens geradas
 let cloud
 
-cloudLoader.setPath('../../assets/Clouds/GLTF/');
+cloudLoader.setPath('/Dino-Game/assets/Clouds/GLTF/');
 for (let i = 0; i < numClouds; i++) {
     cloudLoader.load('Cloud' + math.rand_int(1, 3) + '.glb', function (glb) { // temos 3 modelos de nuvem
         cloud = glb.scene;
@@ -199,7 +199,7 @@ function createObstacle() {
     const numObstacles = 3;
 
     for (let i = 0; i < numObstacles; i++) {
-        loader.load('../../assets/DesertPack/Cactus1.glb', function (gltf) {
+        loader.load('/Dino-Game/assets/DesertPack/Cactus1.glb', function (gltf) {
             const obstacle = gltf.scene;
             obstacle.position.x = 500;
             obstacle.position.z = Math.random() * 100 - 50;
@@ -236,7 +236,7 @@ scene.add(coinsGroup);
 const coinLoader = new GLTFLoader();
 
 function createCoin() {
-    coinLoader.load('../../assets/Coin/coin.glb', function (gltf) {
+    coinLoader.load('/Dino-Game/assets/Coin/coin.glb', function (gltf) {
         const coin = gltf.scene;
         coin.position.x = Math.random() * 2000 - 1000;
         coin.position.z = Math.random() * 200 - 100;
