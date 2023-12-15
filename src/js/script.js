@@ -62,7 +62,7 @@ dirLight.shadow.camera.far = 3500;
 dirLight.shadow.bias = - 0.0001;
 
 // Plane
-const soloTexture = new THREE.TextureLoader().load('/Dino-Game/assets/solo.jpg'); // sugestão: colocar solo de deserto
+const soloTexture = new THREE.TextureLoader().load('../../assets/solo.jpg'); // sugestão: colocar solo de deserto
 const planeGeometry = new THREE.PlaneGeometry(10000, 10000);
 const planeMaterial = new THREE.MeshLambertMaterial({ map: soloTexture });
 
@@ -143,6 +143,7 @@ const cloudLoader = new GLTFLoader();
 const numClouds = 20; // número de nuvens geradas
 let cloud
 
+
 cloudLoader.setPath('/Dino-Game/assets/Clouds/GLTF/');
 for (let i = 0; i < numClouds; i++) {
     cloudLoader.load('Cloud' + math.rand_int(1, 3) + '.glb', function (glb) { // temos 3 modelos de nuvem
@@ -188,7 +189,7 @@ const obstacleGroup = new THREE.Group();
 scene.add(obstacleGroup);
 
 // velocidade que os obstáculos aparecem na cena
-// uma sugestão é aumetar a velocidade conforme o jogador
+// uma sugestão é aumentar a velocidade conforme o jogador
 // for avançando no jogo
 const obstacleSpeed = 4;
 
@@ -296,7 +297,7 @@ function checkCollision() {
     const playerBox = new THREE.Box3().setFromObject(dino);
 
     obstacleGroup.children.forEach((obstacle) => {
-        const obstacleBox = new THREE.Box3().setFromObject(obstacle);
+        const obstacleBox = new THREE.Box3().setFromObject(obstacle, 0.6);
 
         if (playerBox.intersectsBox(obstacleBox)) {
             alert('Você coletou ' + score + ' moedas!');
@@ -316,14 +317,49 @@ function resetGame() {
     });
 }
 
+
+const jumpHeight = 80; // Altura máxima do pulo
+let isJumping = false;
+
+function jump() {
+    isJumping = true;
+    const initialY = dino.position.y;
+    const jumpInterval = setInterval(() => {
+        dino.position.y += dinoSpeed; // Ajuste conforme necessário para a velocidade do pulo
+        if (dino.position.y >= initialY + jumpHeight) {
+            clearInterval(jumpInterval);
+            fall();
+        }
+    }, 16);
+}
+
+function fall() {
+    const fallInterval = setInterval(() => {
+        dino.position.y -= dinoSpeed; // Ajuste conforme necessário para a velocidade da queda
+        if (dino.position.y <= 0) {
+            dino.position.y = 0; // Garante que o dinossauro não afunde abaixo do chão
+            isJumping = false;
+            clearInterval(fallInterval);
+        }
+    }, 16);
+}
+
 function handlePlayerControls() {
     window.addEventListener('keydown', (event) => {
         switch (event.key) {
             case 'a':
+            case 'A':
                 dino.position.z -= dinoSpeed; // esquerda
                 break;
+            case 'D':
             case 'd': // direita
                 dino.position.z += dinoSpeed;
+                break;
+            case 'W':
+            case 'w':
+                if (!isJumping) {
+                    jump();
+                }
                 break;
         }
     });
