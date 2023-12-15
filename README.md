@@ -1,8 +1,8 @@
 # Executar localmente
 
-'''
+```
 python -m http.server -b localhost <PORTA>
-'''
+```
 
 # DinoDash3D - Computação Gráfica
 
