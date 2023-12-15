@@ -1,4 +1,4 @@
-# python -m http.server -b 127.0.0.1 8080
+# python -m http.server -b localhost <PORTA>
 
 # https://andreqsilva.github.io/Dino-Game/
 
