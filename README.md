@@ -8,9 +8,12 @@ python -m http.server -b localhost <PORTA>
 # DinoDash3D - Computação Gráfica
 
 Projeto final da UC de Computação Gráfica 2023.2 do ICT/UNIFESP desenvolvido por: 
-André Quaresma
-Gabriel Almeida
-Gabriel de Mello Cambuy
+
+- André Quaresma
+
+- Gabriel Almeida
+
+- Gabriel de Mello Cambuy
 
 ## Como jogar
 
