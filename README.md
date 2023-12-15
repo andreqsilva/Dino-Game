@@ -1,6 +1,8 @@
-# python -m http.server -b localhost <PORTA>
+# Executar localmente
 
-# https://andreqsilva.github.io/Dino-Game/
+'''
+python -m http.server -b localhost <PORTA>
+'''
 
 # DinoDash3D - Computação Gráfica
 
