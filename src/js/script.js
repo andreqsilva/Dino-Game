@@ -61,7 +61,7 @@ dirLight.shadow.camera.far = 3500;
 dirLight.shadow.bias = - 0.0001;
 
 // Plane
-const soloTexture = new THREE.TextureLoader().load('../../assets/solo.jpg'); // sugestão: colocar solo de deserto
+const soloTexture = new THREE.TextureLoader().load('/Dino-Game/assets/solo.jpg'); // sugestão: colocar solo de deserto
 const planeGeometry = new THREE.PlaneGeometry(10000, 10000);
 const planeMaterial = new THREE.MeshLambertMaterial({ map: soloTexture });
 
